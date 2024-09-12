@@ -15,15 +15,15 @@ public class Counter : MonoBehaviour
 
     private void OnEnable()
     {
-        _inputHandler.MousePressed += MousePressed;
+        _inputHandler.MousePressed += ToggleCount;
     }
 
     private void OnDisable()
     {
-        _inputHandler.MousePressed -= MousePressed;
+        _inputHandler.MousePressed -= ToggleCount;
     }
 
-    private void MousePressed()
+    private void ToggleCount()
     {
         if (_isRunning)
             Stop();

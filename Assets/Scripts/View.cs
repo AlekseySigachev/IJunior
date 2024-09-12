@@ -6,15 +6,15 @@ public class View : MonoBehaviour
 
     private void OnEnable()
     {
-        _counter.NumberUpdated += NumberUpdated;
+        _counter.NumberUpdated += ToggleView;
     }
 
     private void OnDisable()
     {
-        _counter.NumberUpdated -= NumberUpdated;
+        _counter.NumberUpdated -= ToggleView;
     }
 
-    private void NumberUpdated()
+    private void ToggleView()
     {
         ShowInfo(_counter.Count);
     }
