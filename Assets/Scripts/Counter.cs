@@ -30,7 +30,7 @@ public class Counter : MonoBehaviour
 
     private void Restart()
     {
-        _coroutine = StartCoroutine(StartAddNumbers(_delay));
+        _coroutine = StartCoroutine(AddNumbers(_delay));
         _isRunning = true;
     }
 
@@ -40,7 +40,7 @@ public class Counter : MonoBehaviour
         _isRunning = false;
     }
 
-    private IEnumerator StartAddNumbers(float delay)
+    private IEnumerator AddNumbers(float delay)
     {
         var wait = new WaitForSeconds(delay);
 
