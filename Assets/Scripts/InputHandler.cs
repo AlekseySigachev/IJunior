@@ -5,11 +5,9 @@ public class InputHandler : MonoBehaviour
 {
     public event Action MousePressed;
 
-    void Update()
+    private void Update()
     {
         if (Input.GetMouseButtonDown(0))
-        {
             MousePressed?.Invoke();
-        }
     }
 }
