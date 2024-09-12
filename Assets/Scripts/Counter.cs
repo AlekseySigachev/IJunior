@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -5,22 +6,24 @@ public class Counter : MonoBehaviour
 {
     [SerializeField] private InputHandler _inputHandler;
 
+    public event Action NumberUpdated;
     private float _delay = 0.5f;
-    private int _count = 0;
     private bool _isRunning = false;
     private Coroutine _coroutine;
 
+    public int Count { get; private set; }
+
     private void OnEnable()
     {
-        _inputHandler.MousePressed += _inputHandler_MousePressed;
+        _inputHandler.MousePressed += MousePressed;
     }
 
     private void OnDisable()
     {
-        _inputHandler.MousePressed -= _inputHandler_MousePressed;
+        _inputHandler.MousePressed -= MousePressed;
     }
 
-    private void _inputHandler_MousePressed()
+    private void MousePressed()
     {
         if (_isRunning)
             Stop();
@@ -36,8 +39,11 @@ public class Counter : MonoBehaviour
 
     private void Stop()
     {
-        StopCoroutine(_coroutine);
-        _isRunning = false;
+        if (_coroutine != null)
+        {
+            StopCoroutine(_coroutine);
+            _isRunning = false;
+        }
     }
 
     private IEnumerator AddNumbers(float delay)
@@ -46,8 +52,8 @@ public class Counter : MonoBehaviour
 
         while (enabled)
         {
-            _count++;
-            Debug.Log(_count);
+            Count++;
+            NumberUpdated?.Invoke();
             yield return wait;
         }
     }
