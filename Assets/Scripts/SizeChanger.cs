@@ -4,8 +4,8 @@ public class SizeChanger : MonoBehaviour
 {
     private int _sizeDevider = 2;
 
-    public void ReduceObjectSize(GameObject gameObject)
+    public void ReduceObjectSize(Cube cube)
     {
-        gameObject.transform.localScale = transform.localScale / _sizeDevider;
+        cube.transform.localScale = transform.localScale / _sizeDevider;
     }
 }

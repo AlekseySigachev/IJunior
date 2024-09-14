@@ -6,9 +6,9 @@ public class ColorChanger : MonoBehaviour
 
     private float alpha = 1.0f;
 
-    public void SetRandomColor(GameObject gameObject)
+    public void SetRandomColor(Cube cube)
     {
         Color newColor = new Color(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), alpha);
-        gameObject.GetComponent<MeshRenderer>().material.SetColor(NewColor, newColor);
+        cube.GetComponent<MeshRenderer>().material.SetColor(NewColor, newColor);
     }
 }

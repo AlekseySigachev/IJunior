@@ -12,7 +12,7 @@ public class Spawner : MonoBehaviour
     private int _maxCubesCount = 7;
     private int _spawnChanceDevider = 2;
 
-    public UnityEvent<GameObject> ObjectSpawned;
+    public UnityEvent<Cube> ObjectSpawned;
 
     private List<GameObject> _createdObjects;
     public List<GameObject> CreatedObjects = new List<GameObject>();
@@ -43,7 +43,7 @@ public class Spawner : MonoBehaviour
             for (int i = 0; i < cubeCount; i++)
             {
                 var newCube = Instantiate(_prefab, GetNewSpawnPosition(), Quaternion.identity);
-                ObjectSpawned?.Invoke(newCube);
+                ObjectSpawned?.Invoke(newCube.GetComponent<Cube>());
                 ReduceSpawnChance(newCube);
                 _createdObjects.Add(newCube);
             }
