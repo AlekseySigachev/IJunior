@@ -4,7 +4,7 @@ using UnityEngine.Events;
 
 public class InputHandler : MonoBehaviour
 {
-    [SerializeField] public UnityEvent MousePressed;
+    [HideInInspector] public UnityEvent MousePressed;
 
     private void OnMouseDown()
     {

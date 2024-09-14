@@ -5,20 +5,22 @@ using UnityEngine.Events;
 public class Spawner : MonoBehaviour
 {
     [HideInInspector] public float ChanceToSpawn = 1.0f;
+    [HideInInspector] public UnityEvent<Cube> ObjectSpawned;
     [SerializeField] private GameObject _prefab;
 
+    private InputHandler _inputHandler;
     private List<Transform> _spawnPoints = new List<Transform>();
     private int _minCubesCount = 1;
     private int _maxCubesCount = 7;
     private int _spawnChanceDevider = 2;
-
-    public UnityEvent<Cube> ObjectSpawned;
 
     private List<GameObject> _createdObjects;
     public List<GameObject> CreatedObjects = new List<GameObject>();
 
     private void Awake()
     {
+        _inputHandler = GetComponent<InputHandler>();
+        _inputHandler.MousePressed.AddListener(SpawnCubes);
         _createdObjects = new List<GameObject>();
         _spawnPoints = GetAllSpawnPointsTransforms();
     }
@@ -62,5 +64,10 @@ public class Spawner : MonoBehaviour
         var newPosition = _spawnPoints[UnityEngine.Random.Range(0, _spawnPoints.Count)];
         _spawnPoints.Remove(newPosition);
         return newPosition.position;
+    }
+
+    private void OnDisable()
+    {
+        _inputHandler.MousePressed.RemoveListener(SpawnCubes);
     }
 }
