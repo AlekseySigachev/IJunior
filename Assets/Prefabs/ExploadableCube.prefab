@@ -746,7 +746,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ChanceToSpawn: 1
-  _prefab: {fileID: 4088846237933061826}
   ObjectSpawned:
     m_PersistentCalls:
       m_Calls:
@@ -774,7 +773,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  CreatedObjects: []
+  _prefab: {fileID: 4088846237933061826}
 --- !u!114 &3806393515847356654
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -811,8 +810,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11f008bfb0bc46b469ca124aea4d2952, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _explosionForce: 700
-  _explosionRadius: 200
+  _explosionForce: 1000
+  _explosionRadius: 100
 --- !u!114 &1203935336997674666
 MonoBehaviour:
   m_ObjectHideFlags: 0

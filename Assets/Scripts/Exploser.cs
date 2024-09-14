@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Exploser : MonoBehaviour
@@ -7,19 +8,27 @@ public class Exploser : MonoBehaviour
 
     private Spawner _spawner;
 
+    public void Explode()
+    {
+        foreach (var cube in GetExploadableObjects())
+            cube.AddExplosionForce(_explosionForce / transform.localScale.x, transform.position, _explosionRadius / transform.localScale.x);
+    }
+
     private void Awake()
     {
         _spawner = GetComponent<Spawner>();
     }
-    private void OnDestroy()
-    {
-        Explode();
-    }
 
-    private void Explode()
+    private List<Rigidbody> GetExploadableObjects()
     {
-        foreach (var cube in _spawner.CreatedObjects)
-            if(cube.TryGetComponent(out Rigidbody cubeRigidbody))
-               cubeRigidbody.AddExplosionForce(_explosionForce, transform.position, _explosionRadius);
+        Collider[] hits = Physics.OverlapSphere(transform.position, _explosionRadius);
+
+        List<Rigidbody> objectsToExplode = new List<Rigidbody>();
+
+        foreach (Collider hit in hits)
+            if (hit.attachedRigidbody != null)
+                objectsToExplode.Add(hit.attachedRigidbody);
+
+        return objectsToExplode;
     }
 }

@@ -9,19 +9,17 @@ public class Spawner : MonoBehaviour
     [SerializeField] private GameObject _prefab;
 
     private InputHandler _inputHandler;
+    private Exploser _exploser;
     private List<Transform> _spawnPoints = new List<Transform>();
     private int _minCubesCount = 1;
     private int _maxCubesCount = 7;
     private int _spawnChanceDevider = 2;
 
-    private List<GameObject> _createdObjects;
-    public List<GameObject> CreatedObjects = new List<GameObject>();
-
     private void Awake()
     {
         _inputHandler = GetComponent<InputHandler>();
+        _exploser = GetComponent<Exploser>();
         _inputHandler.MousePressed.AddListener(SpawnCubes);
-        _createdObjects = new List<GameObject>();
         _spawnPoints = GetAllSpawnPointsTransforms();
     }
     private List<Transform> GetAllSpawnPointsTransforms()
@@ -47,10 +45,11 @@ public class Spawner : MonoBehaviour
                 var newCube = Instantiate(_prefab, GetNewSpawnPosition(), Quaternion.identity);
                 ObjectSpawned?.Invoke(newCube.GetComponent<Cube>());
                 ReduceSpawnChance(newCube);
-                _createdObjects.Add(newCube);
             }
-
-            CreatedObjects = _createdObjects;
+        }
+        else
+        {
+            _exploser.Explode();
         }
     }
 
