@@ -540,7 +540,7 @@ GameObject:
   - component: {fileID: 7990629429488670606}
   - component: {fileID: 8304832755084454545}
   - component: {fileID: 10886717309997764}
-  - component: {fileID: 7644688666678690458}
+  - component: {fileID: 7771702954741073647}
   - component: {fileID: 2269995384208871432}
   - component: {fileID: 3806393515847356654}
   - component: {fileID: 5859934983231253091}
@@ -706,7 +706,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 2
---- !u!114 &7644688666678690458
+--- !u!114 &7771702954741073647
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -721,18 +721,6 @@ MonoBehaviour:
   MousePressed:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2269995384208871432}
-        m_TargetAssemblyTypeName: Spawner, Assembly-CSharp
-        m_MethodName: SpawnCubes
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1203935336997674666}
         m_TargetAssemblyTypeName: Cube, Assembly-CSharp
         m_MethodName: Destroy
@@ -786,6 +774,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  CreatedObjects: []
 --- !u!114 &3806393515847356654
 MonoBehaviour:
   m_ObjectHideFlags: 0

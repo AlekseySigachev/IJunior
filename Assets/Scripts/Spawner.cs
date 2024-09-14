@@ -14,14 +14,15 @@ public class Spawner : MonoBehaviour
 
     public UnityEvent<GameObject> ObjectSpawned;
 
-    public List<GameObject> CreatedObjects { get; private set; }
+    private List<GameObject> _createdObjects;
+    public List<GameObject> CreatedObjects = new List<GameObject>();
 
     private void Awake()
     {
-        CreatedObjects = new List<GameObject>();
-        _spawnPoints = GetAllSpawnPointsTransforns();
+        _createdObjects = new List<GameObject>();
+        _spawnPoints = GetAllSpawnPointsTransforms();
     }
-    private List<Transform> GetAllSpawnPointsTransforns()
+    private List<Transform> GetAllSpawnPointsTransforms()
     {
         List<Transform> spawnPoints = new List<Transform>();
 
@@ -43,13 +44,15 @@ public class Spawner : MonoBehaviour
             {
                 var newCube = Instantiate(_prefab, GetNewSpawnPosition(), Quaternion.identity);
                 ObjectSpawned?.Invoke(newCube);
-                ReduseSpawnChance(newCube);
-                CreatedObjects.Add(newCube);
+                ReduceSpawnChance(newCube);
+                _createdObjects.Add(newCube);
             }
+
+            CreatedObjects = _createdObjects;
         }
     }
 
-    private void ReduseSpawnChance(GameObject gameObject)
+    private void ReduceSpawnChance(GameObject gameObject)
     {
         gameObject.GetComponent<Spawner>().ChanceToSpawn /= _spawnChanceDevider;
     }
