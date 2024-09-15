@@ -14,6 +14,11 @@ public class Exploser : MonoBehaviour
         _spawner.SpawnFailed += Explode;
     }
 
+    private void OnDisable()
+    {
+        _spawner.SpawnFailed -= Explode;
+    }
+
     public void Explode(Cube cube)
     {
         foreach (var objectToExplode in GetExploadableObjects(cube))
@@ -31,10 +36,5 @@ public class Exploser : MonoBehaviour
                 objectsToExplode.Add(hit.attachedRigidbody);
 
         return objectsToExplode;
-    }
-
-    private void OnDisable()
-    {
-        _spawner.SpawnFailed -= Explode;
     }
 }

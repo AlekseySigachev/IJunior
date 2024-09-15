@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class InputHandler : MonoBehaviour
 {
-    public event Action<Cube> CubeFounded;
     private Camera _camera;
     private int _indexLeftMouseButton = 0;
+    public event Action<Cube> CubeFounded;
 
     private void Awake()
     {

@@ -18,6 +18,11 @@ public class Spawner : MonoBehaviour
         _inputHandler.CubeFounded += TrySpawnCubes;
     }
 
+    private void OnDisable()
+    {
+        _inputHandler.CubeFounded -= TrySpawnCubes;
+    }
+
     private void TrySpawnCubes(Cube cube)
     {
         if (UnityEngine.Random.value <= cube.GetSpawnChance())
@@ -33,7 +38,7 @@ public class Spawner : MonoBehaviour
         for (int i = 0; i < cubeCount; i++)
         {
             var newCube = Instantiate(cube, GetNewSpawnPosition(cube), Quaternion.identity);
-            ObjectSpawned?.Invoke(newCube.GetComponent<Cube>());
+            ObjectSpawned?.Invoke(cube);
             newCube.ReduceSpawnChance(_spawnChanceDevider);
         }
     }
@@ -56,10 +61,5 @@ public class Spawner : MonoBehaviour
         var newPosition = spawnPoints[UnityEngine.Random.Range(0, spawnPoints.Count)];
         Destroy(newPosition.gameObject);
         return newPosition.position;
-    }
-
-    private void OnDisable()
-    {
-        _inputHandler.CubeFounded -= TrySpawnCubes;
     }
 }

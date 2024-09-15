@@ -10,14 +10,13 @@ public class SizeChanger : MonoBehaviour
     {
         _spawner.ObjectSpawned += ReduceObjectSize;
     }
+    private void OnDisable()
+    {
+        _spawner.ObjectSpawned -= ReduceObjectSize;
+    }
 
     public void ReduceObjectSize(Cube cube)
     {
         cube.transform.localScale = cube.transform.localScale / _sizeDevider;
-    }
-
-    private void OnDisable()
-    {
-        _spawner.ObjectSpawned -= ReduceObjectSize;
     }
 }

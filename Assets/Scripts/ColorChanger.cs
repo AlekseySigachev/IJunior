@@ -12,15 +12,14 @@ public class ColorChanger : MonoBehaviour
     {
         _spawner.ObjectSpawned += SetRandomColor;
     }
+    private void OnDisable()
+    {
+        _spawner.ObjectSpawned -= SetRandomColor;
+    }
 
     public void SetRandomColor(Cube cube)
     {
         Color newColor = new Color(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), _alpha);
         cube.GetComponent<MeshRenderer>().material.SetColor(NewColor, newColor);
-    }
-
-    private void OnDisable()
-    {
-        _spawner.ObjectSpawned -= SetRandomColor;
     }
 }
