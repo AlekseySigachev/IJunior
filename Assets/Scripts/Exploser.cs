@@ -8,20 +8,21 @@ public class Exploser : MonoBehaviour
 
     private Spawner _spawner;
 
-    public void Explode()
-    {
-        foreach (var cube in GetExploadableObjects())
-            cube.AddExplosionForce(_explosionForce / transform.localScale.x, transform.position, _explosionRadius / transform.localScale.x);
-    }
-
     private void Awake()
     {
-        _spawner = GetComponent<Spawner>();
+        _spawner = FindObjectOfType<Spawner>();
+        _spawner.SpawnFailed += Explode;
     }
 
-    private List<Rigidbody> GetExploadableObjects()
+    public void Explode(Cube cube)
     {
-        Collider[] hits = Physics.OverlapSphere(transform.position, _explosionRadius);
+        foreach (var objectToExplode in GetExploadableObjects(cube))
+            objectToExplode.AddExplosionForce(_explosionForce / cube.transform.localScale.x, cube.transform.position, _explosionRadius / cube.transform.localScale.x);
+    }
+
+    private List<Rigidbody> GetExploadableObjects(Cube cube)
+    {
+        Collider[] hits = Physics.OverlapSphere(cube.transform.position, _explosionRadius);
 
         List<Rigidbody> objectsToExplode = new List<Rigidbody>();
 
@@ -30,5 +31,9 @@ public class Exploser : MonoBehaviour
                 objectsToExplode.Add(hit.attachedRigidbody);
 
         return objectsToExplode;
+    }
+    private void OnDisable()
+    {
+        _spawner.SpawnFailed -= Explode;
     }
 }

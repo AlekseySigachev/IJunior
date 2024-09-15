@@ -7,16 +7,17 @@ public class SizeChanger : MonoBehaviour
 
     private void Awake()
     {
-        _spawner = GetComponent<Spawner>();
-        _spawner.ObjectSpawned.AddListener(ReduceObjectSize);
+        _spawner = FindObjectOfType<Spawner>();
+        _spawner.ObjectSpawned += ReduceObjectSize;
     }
+
     public void ReduceObjectSize(Cube cube)
     {
-        cube.transform.localScale = transform.localScale / _sizeDevider;
+        cube.transform.localScale = cube.transform.localScale / _sizeDevider;
     }
 
     private void OnDisable()
     {
-        _spawner.ObjectSpawned.AddListener(ReduceObjectSize);
+        _spawner.ObjectSpawned -= ReduceObjectSize;
     }
 }

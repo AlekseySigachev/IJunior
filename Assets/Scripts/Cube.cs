@@ -2,16 +2,12 @@ using UnityEngine;
 
 public class Cube : MonoBehaviour
 {
-    private InputHandler _inputHandler;
+    [SerializeField] private float _chanceToSpawn = 1.0f;
 
-    private void Awake()
+    public float GetSpawnChance() => _chanceToSpawn;
+
+    public void ReduceSpawnChance(float value)
     {
-        _inputHandler = GetComponent<InputHandler>();
-        _inputHandler.MousePressed.AddListener(Destroy);
-    }
-    public void Destroy()
-    {
-        _inputHandler.MousePressed.RemoveListener(Destroy);
-        Destroy(gameObject);
+        _chanceToSpawn /= value;
     }
 }
