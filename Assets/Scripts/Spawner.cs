@@ -4,38 +4,37 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    public  event Action<Cube> ObjectSpawned;
-    public event Action<Cube> SpawnFailed;
+    [SerializeField] private InputHandler _inputHandler;
 
-    private InputHandler _inputHandler;
-    private Exploser _exploser;
     private int _minCubesCount = 1;
     private int _maxCubesCount = 7;
     private int _spawnChanceDevider = 2;
 
+    public event Action<Cube> ObjectSpawned;
+    public event Action<Cube> SpawnFailed;
+
     private void Awake()
     {
-        _inputHandler = FindObjectOfType<InputHandler>();
-        _exploser = GetComponent<Exploser>();
-        _inputHandler.CubeFounded += SpawnCubes;
+        _inputHandler.CubeFounded += TrySpawnCubes;
     }
 
-    public void SpawnCubes(Cube cube)
+    private void TrySpawnCubes(Cube cube)
     {
         if (UnityEngine.Random.value <= cube.GetSpawnChance())
-        {
-            var cubeCount = UnityEngine.Random.Range(_minCubesCount, _maxCubesCount + 1);
-
-            for (int i = 0; i < cubeCount; i++)
-            {
-                var newCube = Instantiate(cube, GetNewSpawnPosition(cube), Quaternion.identity);
-                ObjectSpawned?.Invoke(newCube.GetComponent<Cube>());
-                newCube.ReduceSpawnChance(_spawnChanceDevider);
-            }
-        }
+            SpawnCubes(cube);
         else
-        {
             SpawnFailed?.Invoke(cube);
+    }
+
+    private void SpawnCubes(Cube cube)
+    {
+        var cubeCount = UnityEngine.Random.Range(_minCubesCount, _maxCubesCount + 1);
+
+        for (int i = 0; i < cubeCount; i++)
+        {
+            var newCube = Instantiate(cube, GetNewSpawnPosition(cube), Quaternion.identity);
+            ObjectSpawned?.Invoke(newCube.GetComponent<Cube>());
+            newCube.ReduceSpawnChance(_spawnChanceDevider);
         }
     }
 
@@ -61,6 +60,6 @@ public class Spawner : MonoBehaviour
 
     private void OnDisable()
     {
-        _inputHandler.CubeFounded -= SpawnCubes;
+        _inputHandler.CubeFounded -= TrySpawnCubes;
     }
 }

@@ -2,14 +2,14 @@ using UnityEngine;
 
 public class ColorChanger : MonoBehaviour
 {
+    [SerializeField] private Spawner _spawner;
+
     private const string NewColor = "_Color";
 
-    private Spawner _spawner;
     private float _alpha = 1.0f;
 
     private void Awake()
     {
-        _spawner = FindObjectOfType<Spawner>();
         _spawner.ObjectSpawned += SetRandomColor;
     }
 

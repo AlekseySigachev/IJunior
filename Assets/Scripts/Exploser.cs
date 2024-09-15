@@ -32,6 +32,7 @@ public class Exploser : MonoBehaviour
 
         return objectsToExplode;
     }
+
     private void OnDisable()
     {
         _spawner.SpawnFailed -= Explode;

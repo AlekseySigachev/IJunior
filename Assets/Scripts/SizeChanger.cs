@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class SizeChanger : MonoBehaviour
 {
-    private Spawner _spawner;
+    [SerializeField] private Spawner _spawner;
+
     private int _sizeDevider = 2;
 
     private void Awake()
     {
-        _spawner = FindObjectOfType<Spawner>();
         _spawner.ObjectSpawned += ReduceObjectSize;
     }
 
