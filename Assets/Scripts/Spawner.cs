@@ -11,17 +11,17 @@ public class Spawner : MonoBehaviour
     [SerializeField] private float _spawnRate;
     [SerializeField] private float _spawnDelay;
 
-    private ObjectPool<GameObject> _pool;
+    private ObjectPool<Cube> _pool;
 
-    public event Action<GameObject> CubeSpawned;
-    public event Action<GameObject> SpawnedCubeFell;
+    public event Action<Cube> CubeSpawned;
+    public event Action<Cube> SpawnedCubeFell;
 
     private void Awake()
     {
-        _pool = new ObjectPool<GameObject>(createFunc: () => Instantiate(_cube.gameObject),
-            actionOnGet: (obj) => ActionOnGet(obj),
-            actionOnRelease: (obj) => obj.SetActive(false),
-            actionOnDestroy: (obj) => Destroy(obj),
+        _pool = new ObjectPool<Cube>(createFunc: () => Instantiate(_cube),
+            actionOnGet: (cube) => ActionOnGet(cube),
+            actionOnRelease: (cube) => cube.gameObject.SetActive(false),
+            actionOnDestroy: (cube) => Destroy(cube),
             collectionCheck: true,
             defaultCapacity: _defaultCapacity,
             maxSize: _maxSize);
@@ -32,19 +32,19 @@ public class Spawner : MonoBehaviour
         InvokeRepeating(nameof(GetObject), _spawnDelay, _spawnRate);
     }
     
-    private void ActionOnGet(GameObject gameObject)
+    private void ActionOnGet(Cube cube)
     {
-        gameObject.transform.position = GetNewSpawnPosition();
-        gameObject.SetActive(true);
-        gameObject.GetComponent<Cube>().CubeFell += OnCubeFell;
-        CubeSpawned?.Invoke(gameObject);
+        cube.transform.position = GetNewSpawnPosition();
+        cube.gameObject.SetActive(true);
+        cube.CubeFell += OnCubeFell;
+        CubeSpawned?.Invoke(cube);
     }
 
-    private void OnCubeFell (GameObject gameObject)
+    private void OnCubeFell (Cube cube)
     {
-        gameObject.GetComponent<Cube>().CubeFell -= OnCubeFell;
-        StartCoroutine(TurnOffGameObjectWithDelay(gameObject));
-        SpawnedCubeFell?.Invoke(gameObject);
+        cube.CubeFell -= OnCubeFell;
+        StartCoroutine(TurnOffGameObjectWithDelay(cube));
+        SpawnedCubeFell?.Invoke(cube);
     }
 
     private void GetObject()
@@ -59,7 +59,7 @@ public class Spawner : MonoBehaviour
         return newPosition;
     }
 
-    private IEnumerator TurnOffGameObjectWithDelay(GameObject obj)
+    private IEnumerator TurnOffGameObjectWithDelay(Cube cube)
     {
         var minRandomValue = 2;
         var maxRandomValue = 5;
@@ -67,6 +67,6 @@ public class Spawner : MonoBehaviour
         var wait = new WaitForSeconds(waitTime);
 
         yield return wait;
-        _pool.Release(obj);
+        _pool.Release(cube);
     }
 }

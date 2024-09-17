@@ -11,17 +11,17 @@ public class ColorChanger : MonoBehaviour
         _spawner.CubeSpawned += SetDefaulColor;
     }
 
-    private void SetDefaulColor(GameObject obj)
+    private void SetDefaulColor(Cube cube)
     {
-        GetObjectMaterial(obj).color = _defaultColor;
+        GetObjectMaterial(cube).color = _defaultColor;
     }
 
-    private Material GetObjectMaterial(GameObject gameObject) => gameObject.GetComponent<MeshRenderer>().material;
+    private Material GetObjectMaterial(Cube cube) => cube.GetComponent<MeshRenderer>().material;
 
-    private void SetRandomColor(GameObject obj)
+    private void SetRandomColor(Cube cube)
     {
         var randomColor = new Color(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f));
-        GetObjectMaterial(obj).color = randomColor;
+        GetObjectMaterial(cube).color = randomColor;
     }
 
     private void OnDisable()

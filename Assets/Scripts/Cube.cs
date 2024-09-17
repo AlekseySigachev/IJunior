@@ -5,7 +5,7 @@ public class Cube : MonoBehaviour
 {
     private bool _isFell;
 
-    public event Action<GameObject> CubeFell;
+    public event Action<Cube> CubeFell;
 
     private void OnEnable()
     {
@@ -16,7 +16,7 @@ public class Cube : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<Platform>() != null && _isFell == false)
         {
-            CubeFell?.Invoke(gameObject);
+            CubeFell?.Invoke(this);
             _isFell = true;
         }
     }
