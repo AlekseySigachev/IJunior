@@ -5,7 +5,7 @@ using UnityEngine.Pool;
 
 public class Spawner : MonoBehaviour
 {
-    [SerializeField] private GameObject _prefab;
+    [SerializeField] private Cube _cube;
     [SerializeField] private int _defaultCapacity;
     [SerializeField] private int _maxSize;
     [SerializeField] private float _spawnRate;
@@ -18,7 +18,7 @@ public class Spawner : MonoBehaviour
 
     private void Awake()
     {
-        _pool = new ObjectPool<GameObject>(createFunc: () => Instantiate(_prefab),
+        _pool = new ObjectPool<GameObject>(createFunc: () => Instantiate(_cube.gameObject),
             actionOnGet: (obj) => ActionOnGet(obj),
             actionOnRelease: (obj) => obj.SetActive(false),
             actionOnDestroy: (obj) => Destroy(obj),

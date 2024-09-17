@@ -16,7 +16,7 @@ public class ColorChanger : MonoBehaviour
         GetObjectMaterial(obj).color = _defaultColor;
     }
 
-    private Material GetObjectMaterial(GameObject gameObject) => gameObject.GetComponent<Material>();
+    private Material GetObjectMaterial(GameObject gameObject) => gameObject.GetComponent<MeshRenderer>().material;
 
     private void SetRandomColor(GameObject obj)
     {

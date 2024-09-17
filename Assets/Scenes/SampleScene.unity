@@ -151,10 +151,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fd31c83cb39988498000208dde0e7a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _prefab: {fileID: 7908936035943833643, guid: bfe22b35c3e67354f9e14d035b173a3c, type: 3}
+  _cube: {fileID: -5205295433850982196, guid: bfe22b35c3e67354f9e14d035b173a3c, type: 3}
   _defaultCapacity: 0
   _maxSize: 15
-  _spawnRate: 0
+  _spawnRate: 0.01
   _spawnDelay: 0
 --- !u!4 &477981867
 Transform:
