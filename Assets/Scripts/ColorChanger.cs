@@ -7,8 +7,8 @@ public class ColorChanger : MonoBehaviour
 
     private void OnEnable()
     {
-        _spawner.OnSpawnedCubeFell += SetRandomColor;
-        _spawner.OnSpawned += SetDefaulColor;
+        _spawner.SpawnedCubeFell += SetRandomColor;
+        _spawner.CubeSpawned += SetDefaulColor;
     }
 
     private void SetDefaulColor(GameObject obj)
@@ -26,6 +26,7 @@ public class ColorChanger : MonoBehaviour
 
     private void OnDisable()
     {
-        _spawner.OnSpawnedCubeFell -= SetRandomColor;
+        _spawner.SpawnedCubeFell -= SetRandomColor;
+        _spawner.CubeSpawned -= SetDefaulColor;
     }
 }

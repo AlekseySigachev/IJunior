@@ -13,8 +13,8 @@ public class Spawner : MonoBehaviour
 
     private ObjectPool<GameObject> _pool;
 
-    public event Action<GameObject> OnSpawned;
-    public event Action<GameObject> OnSpawnedCubeFell;
+    public event Action<GameObject> CubeSpawned;
+    public event Action<GameObject> SpawnedCubeFell;
 
     private void Awake()
     {
@@ -37,14 +37,14 @@ public class Spawner : MonoBehaviour
         gameObject.transform.position = GetNewSpawnPosition();
         gameObject.SetActive(true);
         gameObject.GetComponent<Cube>().CubeFell += OnCubeFell;
-        OnSpawned?.Invoke(gameObject);
+        CubeSpawned?.Invoke(gameObject);
     }
 
     private void OnCubeFell (GameObject gameObject)
     {
         gameObject.GetComponent<Cube>().CubeFell -= OnCubeFell;
         StartCoroutine(TurnOffGameObjectWithDelay(gameObject));
-        OnSpawnedCubeFell?.Invoke(gameObject);
+        SpawnedCubeFell?.Invoke(gameObject);
     }
 
     private void GetObject()

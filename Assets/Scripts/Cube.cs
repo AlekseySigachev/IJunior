@@ -3,21 +3,21 @@ using UnityEngine;
 
 public class Cube : MonoBehaviour
 {
-    private bool _isfell;
+    private bool _isFell;
 
     public event Action<GameObject> CubeFell;
 
     private void OnEnable()
     {
-        _isfell = false;
+        _isFell = false;
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.GetComponent<Platform>() != null && _isfell == false)
+        if (collision.gameObject.GetComponent<Platform>() != null && _isFell == false)
         {
             CubeFell?.Invoke(gameObject);
-            _isfell = true;
+            _isFell = true;
         }
     }
 }
