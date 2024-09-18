@@ -6,12 +6,11 @@ using UnityEngine.Pool;
 public class Spawner : MonoBehaviour
 {
     [SerializeField] private Enemy _enemy;
-    [SerializeField] private List<Transform> _spawnPoints;
+    [SerializeField] private Transform _target;
     [SerializeField] private int _defaultCapacity;
     [SerializeField] private int _maxSize;
     [SerializeField] private float _spawnRate;
     [SerializeField] private float _spawnDelay;
-    [SerializeField] private Vector3 _moveDirection;
 
     private ObjectPool<Enemy> _pool;
 
@@ -33,22 +32,14 @@ public class Spawner : MonoBehaviour
 
     private void ActionOnGet(Enemy enemy)
     {
-        enemy.transform.position = GetRandomSpawnPoint().position;
-        enemy.SetDirection(_moveDirection);
+        enemy.transform.position = transform.position;
+        enemy.SetTarget(_target);
         enemy.gameObject.SetActive(true);
     }
 
     private void GetObject()
     {
-        if (_pool != null)
+        if (_pool != null && _pool.CountActive <= _defaultCapacity -1)
             _pool.Get();
-    }
-
-    private Transform GetRandomSpawnPoint()
-    {
-        var minRandomValue = 0;
-        var maxRandomValue = _spawnPoints.Count;
-
-        return _spawnPoints[UnityEngine.Random.Range(minRandomValue, maxRandomValue)];
     }
 }
