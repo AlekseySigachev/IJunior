@@ -13,14 +13,14 @@ public class Spawner : MonoBehaviour
     [SerializeField] private float _spawnDelay;
     [SerializeField] private Vector3 _moveDirection;
 
-    private ObjectPool<GameObject> _pool;
+    private ObjectPool<Enemy> _pool;
 
     private void Awake()
     {
-        _pool = new ObjectPool<GameObject>(createFunc: () => Instantiate(_enemy.gameObject),
-            actionOnGet: (obj) => ActionOnGet(obj),
-            actionOnRelease: (obj) => obj.SetActive(false),
-            actionOnDestroy: (obj) => Destroy(obj),
+        _pool = new ObjectPool<Enemy>(createFunc: () => Instantiate(_enemy),
+            actionOnGet: (enemy) => ActionOnGet(enemy),
+            actionOnRelease: (enemy) => enemy.gameObject.SetActive(false),
+            actionOnDestroy: (enemy) => Destroy(enemy),
             collectionCheck: true,
             defaultCapacity: _defaultCapacity,
             maxSize: _maxSize);
@@ -31,11 +31,11 @@ public class Spawner : MonoBehaviour
         InvokeRepeating(nameof(GetObject), _spawnDelay, _spawnRate);
     }
 
-    private void ActionOnGet(GameObject gameObject)
+    private void ActionOnGet(Enemy enemy)
     {
-        gameObject.transform.position = GetRandomSpawnPoint().position;
-        gameObject.GetComponent<Enemy>().SetDirection(_moveDirection);
-        gameObject.SetActive(true);
+        enemy.transform.position = GetRandomSpawnPoint().position;
+        enemy.SetDirection(_moveDirection);
+        enemy.gameObject.SetActive(true);
     }
 
     private void GetObject()
