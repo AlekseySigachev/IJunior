@@ -5,22 +5,21 @@ using UnityEngine;
 
 public class Shooter : MonoBehaviour
 {
-    [SerializeField] private GameObject _prefab;
+    [SerializeField] private MonoBehaviour _prefab;
     [SerializeField] private float _speed;
     [SerializeField] private float _shootDelay;
+    [SerializeField] private Transform _target;
 
-    private Transform _target;
-    private Coroutine _coroutine;
+    private void Start() => 
+        StartCoroutine(StartShooting());
 
-    private void Start() => _coroutine = StartCoroutine(StartShooting());
+    private Vector3 GetDirection() => 
+        (_target.position - transform.position).normalized;
 
-    public void SetTarget(Transform target) => _target = target;
+    private MonoBehaviour SpawnBullet() => 
+        Instantiate(_prefab, transform.position + GetDirection(), Quaternion.identity);
 
-    private Vector3 GetDirection() => (_target.position - transform.position).normalized;
-
-    private GameObject SpawnBullet() => Instantiate(_prefab, transform.position + GetDirection(), Quaternion.identity);
-
-    IEnumerator StartShooting()
+    private IEnumerator StartShooting()
     {
         var wait = new WaitForSeconds(_shootDelay);
 

@@ -15,9 +15,12 @@ public class Mover : MonoBehaviour
             UpdateWaypointIndex();
     }
 
-    private void Move() => transform.position = Vector3.MoveTowards(transform.position, _waypoints[_waypointIndex].position, _speed * Time.deltaTime);
+    private void Move() => 
+        transform.position = Vector3.MoveTowards(transform.position, _waypoints[_waypointIndex].position, _speed * Time.deltaTime);
 
-    private bool IsWaypointReached() => transform.position == _waypoints[_waypointIndex].position;
+    private bool IsWaypointReached() => 
+        transform.position == _waypoints[_waypointIndex].position;
 
-    private void UpdateWaypointIndex() => _waypointIndex = ++_waypointIndex % _waypoints.Length;
+    private void UpdateWaypointIndex() => 
+        _waypointIndex = ++_waypointIndex % _waypoints.Length;
 }
