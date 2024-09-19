@@ -11,7 +11,7 @@ public class Shooter : MonoBehaviour
     [SerializeField] private Transform _target;
 
     private void Start() => 
-        StartCoroutine(StartShooting());
+        StartCoroutine(Shooting());
 
     private Vector3 GetDirection() => 
         (_target.position - transform.position).normalized;
@@ -19,7 +19,7 @@ public class Shooter : MonoBehaviour
     private MonoBehaviour SpawnBullet() => 
         Instantiate(_prefab, transform.position + GetDirection(), Quaternion.identity);
 
-    private IEnumerator StartShooting()
+    private IEnumerator Shooting()
     {
         var wait = new WaitForSeconds(_shootDelay);
 
