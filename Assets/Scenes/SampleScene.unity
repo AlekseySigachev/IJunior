@@ -289,7 +289,7 @@ GameObject:
   - component: {fileID: 266140731}
   - component: {fileID: 266140730}
   m_Layer: 0
-  m_Name: Spawn (1)
+  m_Name: SpawnCircle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -307,7 +307,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fabbf57de70f80a46b5d5da91f951319, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemy: {fileID: 5564201545952398533, guid: 0e271807140f47145abcf841830c52ee, type: 3}
+  _enemy: {fileID: -2696821178272874289, guid: 44ae901bcaf9cae418e2a61ea27f5b5f, type: 3}
   _target: {fileID: 1382014441}
   _defaultCapacity: 1
   _maxSize: 1
@@ -649,7 +649,7 @@ GameObject:
   - component: {fileID: 1007198608}
   - component: {fileID: 1007198607}
   m_Layer: 0
-  m_Name: Spawn
+  m_Name: SpawnCubes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -667,7 +667,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fabbf57de70f80a46b5d5da91f951319, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemy: {fileID: 5564201545952398533, guid: 0e271807140f47145abcf841830c52ee, type: 3}
+  _enemy: {fileID: -2696821178272874289, guid: 0e271807140f47145abcf841830c52ee, type: 3}
   _target: {fileID: 1333891595}
   _defaultCapacity: 1
   _maxSize: 1
@@ -1209,7 +1209,7 @@ GameObject:
   - component: {fileID: 1537985648}
   - component: {fileID: 1537985647}
   m_Layer: 0
-  m_Name: Spawn (2)
+  m_Name: SpawnCapsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1227,7 +1227,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fabbf57de70f80a46b5d5da91f951319, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemy: {fileID: 5564201545952398533, guid: 0e271807140f47145abcf841830c52ee, type: 3}
+  _enemy: {fileID: -2696821178272874289, guid: 49faa580fada95d4f9fa058cba4d9c55, type: 3}
   _target: {fileID: 78708748}
   _defaultCapacity: 1
   _maxSize: 1

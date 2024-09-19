@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Enemy : MoveableObject
 {
-    [SerializeField] private float _speed = 2.5f;
+    [SerializeField] protected float _speed = 2.5f;
 
     private Transform _target;
 
