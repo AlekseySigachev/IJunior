@@ -131,6 +131,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 101073725}
+  - component: {fileID: 101073726}
   m_Layer: 0
   m_Name: House
   m_TagString: Untagged
@@ -158,8 +159,21 @@ Transform:
   - {fileID: 1926338719}
   - {fileID: 806791524}
   - {fileID: 1280278839}
+  - {fileID: 2027375199}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &101073726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 101073724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2dc675a064576364f9ae9c3bf1455d8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &108867312
 GameObject:
   m_ObjectHideFlags: 0
@@ -1699,6 +1713,7 @@ GameObject:
   - component: {fileID: 2027375198}
   - component: {fileID: 2027375200}
   - component: {fileID: 2027375201}
+  - component: {fileID: 2027375202}
   m_Layer: 0
   m_Name: Alarm
   m_TagString: Untagged
@@ -1735,12 +1750,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2027375197}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: 10.75}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 101073725}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &2027375200
 AudioSource:
@@ -1851,6 +1866,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _audioSource: {fileID: 2027375200}
+  _trigger: {fileID: 2027375202}
+--- !u!114 &2027375202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2027375197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3776f491a75fff4f841c366cfd9b8b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2132683386
 GameObject:
   m_ObjectHideFlags: 0
@@ -1890,7 +1918,6 @@ SceneRoots:
   - {fileID: 705507995}
   - {fileID: 1347361708}
   - {fileID: 101073725}
-  - {fileID: 2027375199}
   - {fileID: 662096797}
   - {fileID: 1535384833}
   - {fileID: 878817235}
