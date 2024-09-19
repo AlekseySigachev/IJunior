@@ -7,37 +7,65 @@ public class Alarm : MonoBehaviour
 
     private float _minValue = 0.0f;
     private float _maxValue = 1.0f;
+    private float _delay = 1.0f;
+    private float _volumeStep = 0.2f;
+    private bool _isThiefInHouse;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.GetComponent<Enemy>() != null)
+        {
+            _isThiefInHouse = true;
             StartSignal();
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (other.GetComponent<Enemy>() != null)
+        {
+            _isThiefInHouse = false;
             EndSignal();
+        }
     }
 
     private void StartSignal()
     {
-        Debug.Log("Started");
-        StartCoroutine(AlarmOn());
+        StopAllCoroutines();
+        StartCoroutine(AlarmTriggered());
     }
 
     private void EndSignal()
     {
-        _audioSource.volume = Mathf.MoveTowards(_audioSource.volume, _minValue, 0.1f);
+        StopAllCoroutines();
+        StartCoroutine(AlarmTriggered());
     }
 
-    private IEnumerator AlarmOn()
+    private void ChangeVolume(float volume) => _audioSource.volume = Mathf.MoveTowards(_audioSource.volume, volume, _volumeStep);
+
+    private IEnumerator AlarmTriggered()
     {
-        while(_audioSource.volume != _maxValue)
+        var wait = new WaitForSeconds(_delay);
+
+        if (_isThiefInHouse)
         {
-            _audioSource.volume = Mathf.MoveTowards(_audioSource.volume, _maxValue, 0.1f);
-            Debug.Log(_audioSource.volume);
-            yield return null;
+            _audioSource.Play();
+
+            while (_audioSource.volume != _maxValue)
+            {
+                ChangeVolume(_maxValue);
+                yield return wait;
+            }
+        }
+        else
+        {
+            while (_audioSource.volume != _minValue)
+            {
+                ChangeVolume(_minValue);
+                yield return wait;
+            }
+
+            _audioSource.Stop();
         }
     }
 }
