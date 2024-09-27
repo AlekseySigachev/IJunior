@@ -8,12 +8,11 @@ public class Patrol : MonoBehaviour
 
     private Creature _creature;
     private int _destinationPointIndex;
-    private Coroutine _patrolCoroutine;
 
     private void Awake()
     {
         _creature = GetComponent<Creature>();
-        _patrolCoroutine = StartCoroutine(DoPatrol());
+        StartCoroutine(DoPatrol());
     }
 
     private IEnumerator DoPatrol()

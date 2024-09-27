@@ -2,20 +2,17 @@ using UnityEngine;
 
 public class Creature : MonoBehaviour
 {
+    private static readonly int IsRunningAnimKey = Animator.StringToHash("IsRunning");
+
     [SerializeField] private float _speed;
 
     protected Rigidbody2D Rigidbody;
-    private SpriteRenderer _spriteRenderer;
     protected Animator _animator;
     protected Vector2 CurrentDirection;
-
-    private static readonly int IsRunningAnimKey = Animator.StringToHash("IsRunning");
-
 
     private void Awake()
     {
         Rigidbody = GetComponent<Rigidbody2D>();
-        _spriteRenderer = GetComponent<SpriteRenderer>();
         _animator = GetComponent<Animator>();
     }
 

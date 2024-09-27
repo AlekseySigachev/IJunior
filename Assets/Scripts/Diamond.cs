@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class Diamond : MonoBehaviour
 {
-    private Animator _animator;
-
     private static readonly int IsHittingAnimKey = Animator.StringToHash("hit");
+
+    private Animator _animator;
 
     private void Awake() =>
         _animator = GetComponent<Animator>();
