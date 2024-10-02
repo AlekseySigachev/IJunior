@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class Character : Creature
 {
+    private static readonly int IsGroundedAnimKey = Animator.StringToHash("IsGrounded");
+    private static readonly int YVelocityAnimKey = Animator.StringToHash("VerticalVelocity");
+
     [SerializeField] private LayerChecker _groundCheck;
     [SerializeField] private float _jumpForce;
 
@@ -9,13 +12,10 @@ public class Character : Creature
     private bool _isJumping;
     private int _diamonds;
 
-    private static readonly int IsGroundedAnimKey = Animator.StringToHash("IsGrounded");
-    private static readonly int YVelocityAnimKey = Animator.StringToHash("VerticalVelocity");
-
     private void Update()
     {
         _isGrounded = _groundCheck.IsTouchingLayer;
-        _animator.SetBool(IsGroundedAnimKey, _isGrounded);
+        Animator.SetBool(IsGroundedAnimKey, _isGrounded);
     }
 
     protected override void FixedUpdate()
@@ -25,7 +25,7 @@ public class Character : Creature
         if (isJumpPressing && _isGrounded)
             Rigidbody.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse);
 
-        _animator.SetFloat(YVelocityAnimKey, Rigidbody.velocity.y);
+        Animator.SetFloat(YVelocityAnimKey, Rigidbody.velocity.y);
         base.FixedUpdate();
     }
 

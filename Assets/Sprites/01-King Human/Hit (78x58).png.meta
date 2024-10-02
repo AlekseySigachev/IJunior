@@ -108,18 +108,62 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Hit (78x58)_0
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 18
+        width: 37
+        height: 26
+      alignment: 9
+      pivot: {x: 0.60601836, y: 0.40099034}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81a1e9cba795eff458089a99181da7eb
+      internalID: 1321120850
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hit (78x58)_1
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 17
+        width: 37
+        height: 26
+      alignment: 9
+      pivot: {x: 0.64246243, y: 0.4434232}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 837e4378f489c7841a7b96695014d036
+      internalID: -263299321
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 909b3f366c271ff488e1163b971da3c0
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Hit (78x58)_0: 1321120850
+      Hit (78x58)_1: -263299321
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

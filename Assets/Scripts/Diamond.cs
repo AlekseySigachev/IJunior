@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Diamond : MonoBehaviour
+public class Diamond : HealthPotion
 {
     private static readonly int IsHittingAnimKey = Animator.StringToHash("hit");
 
